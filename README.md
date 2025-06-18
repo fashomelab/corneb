@@ -69,8 +69,8 @@ The entire homelab is designed for resilience, security, and separation of conce
 * **To see the detailed, full-resolution diagram, please click on the image below.**
 
 <div align="center">
-  <a href="homelab-architecture.png">
-    <img src="homelab-architecture.png" alt="Homelab Architecture Diagram" width="800">
+  <a href="homelab-architectur.png">
+    <img src="homelab-architectur.png" alt="Homelab Architecture Diagram" width="800">
   </a>
 </div>
 
