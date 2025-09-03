@@ -6,12 +6,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/fashomelab/corneb">
-    </a>
-
-  <h3 align="center">Project Corneb: A DevOps Homelab Showcase</h3>
-
+  </a>
+  <h3 align="center">Project FasHomeLab: A Living DevOps and Platform Engineering Portfolio</h3>
   <p align="center">
-    A comprehensive homelab environment demonstrating modern DevOps and infrastructure engineering principles. This project showcases automation, containerization, Infrastructure as Code, and hybrid-cloud practices across a multi-node, multi-platform setup.
+    Welcome to FasHomeLab. This repository is the central hub for my personal homelab, a fully automated platform designed to practice and demonstrate modern DevOps and cloud engineering principles. From Infrastructure as Code with Terraform to GitOps on Kubernetes, this project is a living portfolio of my skills and passion for building resilient, code-driven systems.
     <br />
     <a href="#-overall-architecture"><strong>Explore the Architecture »</strong></a>
     <br />
@@ -50,9 +48,9 @@
 
 ## 🚀 About The Project
 
-Project Corneb is my personal homelab, designed and built to serve as a practical, hands-on environment for implementing and mastering modern DevOps practices. It encompasses on-premise virtualization, a sophisticated container orchestration platform, robust networking, and a hybrid-cloud model for state and service management.
+This project comes from my passion for technology and for getting hands-on with modern DevOps tools. Before this was a portfolio, it was just my personal lab for learning and testing new ideas. It started small with a few Raspberry Pis and has grown into the setup you see here.
 
-This isn't just a collection of services; it's a fully-fledged, automated ecosystem managed almost entirely through code. From provisioning virtual machines with Terraform to deploying applications on Kubernetes with GitOps, this project demonstrates a deep understanding of the entire technology lifecycle.
+As the lab got bigger, my main goal became to automate everything. This project shows how I put that idea into practice. I use tools like Terraform to create VMs and GitOps to manage my Kubernetes clusters, showing a real-world understanding of how to build and manage infrastructure.
 
 The primary goals of this project are to:
 * **Showcase** a comprehensive skillset in infrastructure engineering, cloud, and automation.
@@ -64,9 +62,9 @@ The primary goals of this project are to:
 
 ## 🗺️ Overall Architecture
 
-The entire homelab is designed for resilience, security, and separation of concerns. The diagram below provides a high-level overview of the two main environments: the self-hosted on-premise lab (`FashHomeLab`) and the cloud backend (`AzHomeLab`).
+This homelab is a hybrid environment built for resilience and security. The core infrastructure is self-hosted on-premise, while Microsoft Azure provides key backend services for state management. The diagram below shows how these components work together.
 
-* **To see the detailed, full-resolution diagram, please click on the image below.**
+*Click the diagram for a full-resolution view.*
 
 <div align="center">
   <a href="homelab-architectur.png">
@@ -80,76 +78,70 @@ The entire homelab is designed for resilience, security, and separation of conce
 ## 🛠️ Technical Deep Dive
 
 ### Virtualization: Proxmox VE Cluster
-The foundation of the on-premise lab is a 3-node Proxmox cluster configured for high availability.
-* **Clustering & High Availability:** Ensures resilience and workload distribution.
-* **Network Teaming (LAGs):** Link Aggregation is configured for increased throughput and redundancy to the managed switch.
-* **Workload Distribution:**
-    * `proxmox`: Hosts several k3s cluster nodes and the Nginx reverse proxy.
-    * `proxmox2`: A dedicated node for the virtualized **pfSense router**, isolating core network functions.
-    * `proxmox3`: Hosts the remaining k3s nodes, a **TrueNAS Scale** instance (with HDD/SSD passthrough), a Windows 11 VM for media, and a self-hosted Azure DevOps agent.
+The foundation of the on-premise lab is a 3-node Proxmox cluster, providing a resilient and flexible platform for all virtualized workloads.
+* **Clustering & High Availability:** A 3-node setup was chosen to learn and implement enterprise-grade resilience. If one host fails, critical VMs can be automatically migrated to another node.
+* **Network Teaming (LAGs):** Link Aggregation is configured to the managed switch, preventing network bottlenecks and providing redundancy for the entire cluster.
+* **Dedicated Workloads:**
+    * `proxmox2` is dedicated to the virtualized **pfSense router**, a design choice to isolate core network functions from other workloads for maximum stability and security.
+    * `proxmox3` is tailored for storage-heavy services, using direct HDD/SSD passthrough for the **TrueNAS Scale** instance.
 
 ### Networking: pfSense & VLANs
-Security and traffic segmentation are managed by a virtualized pfSense router.
-* **VLANs:** Five distinct VLANs are configured to isolate different types of traffic (e.g., management, services, IoT, trusted clients), enhancing security.
-* **IDS/IPS:** **Snort** is deployed for intrusion detection and prevention, actively monitoring traffic for threats.
-* **Core Services:** Manages DHCP, DNS, and firewall rules for the entire network.
+A virtualized pfSense router acts as the brain of the network, managing security, routing, and traffic segmentation.
+* **Security-First Design:** Virtualizing the firewall allows for easy snapshots, backups, and quick recovery. **Snort** is used for active intrusion detection, and the entire network is segmented into five **VLANs** to prevent lateral movement. For example, untrusted IoT devices are on a separate network and cannot access management interfaces.
+* **VPN Gateway:** The firewall functions as a central VPN gateway, providing two key capabilities: secure **remote access** into the homelab (as a VPN server), and a persistent **site-to-site (S2S) tunnel** to Microsoft Azure, securely bridging my on-premise and cloud environments.
+* **Core Services:** All essential network services (DHCP, DNS, firewall rules) are centralized on pfSense for simplified management.
 
 ### Kubernetes (k3s) Clusters
-The heart of the service deployment strategy is Kubernetes, implemented via three distinct k3s clusters managed with GitOps principles.
+The heart of my service deployment strategy is a multi-cluster Kubernetes environment. This setup mirrors enterprise best practices by separating management, production, and development workloads for enhanced security and stability. All clusters are managed declaratively using GitOps principles.
 
 1.  **`cauldron-factory` (Management Cluster):**
-    * **Purpose:** Manages the other clusters and core cluster services.
-    * **GitOps:** Managed by **FluxCD**.
-    * **Stack:** Hosts **Rancher UI**, Traefik Ingress, Reflector, and Cert-Manager, all deployed via Helm charts managed by Flux.
+    * **Purpose:** This cluster follows the "management cluster" pattern, providing a central point of control. Its primary role is to manage other clusters and core infrastructure services.
+    * **GitOps & Stack:** Managed by **FluxCD** to explore both major GitOps tools. It hosts **Rancher** for UI-based management, along with core services like Traefik and Cert-Manager.
 
 2.  **`horizon-mountain` (Production Cluster):**
-    * **Purpose:** Runs primary, user-facing applications.
-    * **GitOps:** Managed by **ArgoCD** using a combination of Helm and Kustomize.
-    * **CNI:** Utilizes **Cilium** with **BGP** for advanced networking and security, replacing the need for MetalLB.
-    * **Stack:** Traefik, Cert-Manager, **HashiCorp Vault (HA Mode)**, Vaultwarden, Homepage Dashboard, **Longhorn** for persistent storage, and a full monitoring stack (Prometheus Operator, Grafana).
-    * **Security:** Secrets are encrypted using **Sealed Secrets** before being committed to Git.
+    * **Purpose:** Runs primary, user-facing applications for the internal home network.
+    * **GitOps & Advanced Networking:** Managed by **ArgoCD**. I chose **Cilium with BGP** to gain deep experience with eBPF-based networking and to enable advanced features like direct pod-to-pod routing across my network.
+    * **Production-Grade Stack:** Includes **HashiCorp Vault in HA mode** for robust secrets management, **Longhorn** for resilient persistent storage, and a full Prometheus/Grafana monitoring stack.
+    * **Security & Access:** This cluster is intentionally not exposed to the public internet. Access to its services is strictly internal, ensuring that core infrastructure like HashiCorp Vault is protected from external threats. External access to specific, approved applications is managed through a separate, hardened Nginx reverse proxy and Traefik ingress controller.
 
 3.  **`zero-dawn` (Dev/Test & CI Cluster):**
     * **Purpose:** A testing ground for new applications and host for CI/CD infrastructure.
-    * **GitOps:** Also managed by **ArgoCD**.
-    * **Stack:** A similar stack to 'prod' (Traefik, Longhorn, Sealed Secrets, Monitoring) to maintain environment parity.
-    * **CI/CD:** Hosts **self-hosted GitHub Actions runners**, connected securely via a GitHub App.
+    * **GitOps & Environment Parity:** Also managed by **ArgoCD**. The stack is kept similar to the production cluster to ensure that applications behave the same way in testing as they do in production, a key DevOps principle.
+    * **Isolated CI/CD Workloads:** This cluster is the designated home for all CI/CD infrastructure, including the self-hosted GitHub Actions runners. This is a deliberate design choice that isolates resource-intensive build jobs from the production environment, ensuring application performance is never impacted by CI workloads. It also creates a crucial security boundary between the build system and production services.
 
 ### Physical Infrastructure: Raspberry Pi Fleet
-A fleet of low-power Raspberry Pis runs essential 24/7 services, allowing the main Proxmox hosts to be powered down to save energy.
+To ensure critical services are always online without the power consumption of the main server cluster, a dedicated fleet of low-power Raspberry Pis runs 24/7. This is a deliberate design choice focused on energy efficiency and resilience.
 
-* **`ravager` & `apollo` (DNS):** A redundant, high-availability DNS setup using **Pi-hole**. `ravager` is the primary, with `apollo` as the secondary. State is synchronized with `Nebulasync` and failover is handled by `Keepalived`.
-* **`thunderjaw` (External Monitoring):** Runs **Uptime Kuma** to monitor all infrastructure, providing an external viewpoint.
-* **`sawtooth` (Download Services):** A suite of Docker containers for automated media acquisition (Sonarr, Radarr, qBittorrent).
-* **`stormbird` (Storage & Central Monitoring):**
-    * **NAS:** Runs **OpenMediaVault** for fast Docker volume storage and acts as a staging area for downloads. Data is synced nightly to the main TrueNAS Scale VM.
-    * **Central Monitoring Hub:** Hosts a central **Prometheus** and **Grafana** instance. Node Exporters, deployed via Ansible, feed metrics from every host and VM into this instance. It also pulls in data from the Kubernetes Prometheus instances, providing a single pane of glass for all metrics and alerting.
+* **`ravager` & `apollo` (High-Availability DNS):** DNS is the most critical service in the lab; if it's down, nothing works. This is a redundant **Pi-hole** setup in an active/passive cluster using **Keepalived** to manage a virtual IP for seamless failover. State and configurations are kept in sync with `Nebulasync`.
+* **`thunderjaw` (External Monitoring):** To provide a true external viewpoint, this Pi runs **Uptime Kuma**. It monitors all infrastructure from outside the main cluster, ensuring I get alerts even if the primary network or hosts are down.
+* **`sawtooth` (Download Services):** This node is dedicated to a **high-volume data ingestion workload** using a suite of containerized automation tools. This isolates the high I/O churn of this process, protecting the performance and integrity of the main storage arrays.
+* **`stormbird` (Staging Storage & Central Monitoring):**
+    * **Tiered Storage:** Runs **OpenMediaVault** as a fast, temporary NAS for Docker volumes and as a staging area for downloads. Data is then synced nightly to the main TrueNAS VM, a tiered approach that protects the primary ZFS pool from constant writes.
+    * **Single Pane of Glass:** Hosts a central **Prometheus** and **Grafana** instance. Node Exporters, deployed via Ansible, feed metrics from every device in the lab into this hub, providing a single dashboard for all metrics and alerting.
 
-### Automation: IaC & Configuration Management
+### Automation & Hybrid Cloud Strategy
+Automation is the central principle of this lab, with a clear separation of concerns between provisioning (Terraform) and configuration (Ansible). This entire workflow is built on a hybrid-cloud model, using Azure for critical backend services.
 
 * **Terraform (Infrastructure as Code):**
-    * **Scope:** Manages the entire lifecycle of all Proxmox VMs.
-    * **Remote Backend:** Securely stores the Terraform state file in **Azure Blob Storage**.
-    * **Structure:** Highly modular and organized by environment (`fashomelab`, `azhomelab`).
+    * **Lifecycle Management:** Manages the entire lifecycle of all Proxmox VMs, from creation to destruction, ensuring infrastructure is declarative and repeatable.
+    * **Secure State Management:** The Terraform state file is stored securely in **Azure Blob Storage**. This is a best practice that enables CI/CD integration and prevents state file loss.
     * *(Future Public Repo: `github.com/fashomelab/terraform`)*
 
 * **Ansible (Configuration Management):**
-    * **Scope:** Configures new VMs post-provisioning, manages ongoing server state, and deploys monitoring agents.
-    * **Playbooks:** Includes roles for hardening (UFW, Fail2Ban), Nginx setup, Let's Encrypt certificates, software installation, and system-wide updates.
-    * **Secrets:** Currently uses Ansible Vault, with plans to migrate to HashiCorp Vault.
-    * **CI/CD:** An Azure DevOps pipeline triggers the `infra_update` playbook from a self-hosted agent.
+    * **Server Configuration:** Configures new VMs after they are provisioned by Terraform. Playbooks handle everything from security hardening (UFW, Fail2Ban) to application setup.
+    * **GitOps for Infrastructure:** An **Azure DevOps** pipeline automatically triggers Ansible playbooks from a self-hosted agent, applying GitOps principles to infrastructure configuration.
+    * **Secrets Management:** Currently uses Ansible Vault for static secrets, with a roadmap item to integrate with the central HashiCorp Vault for dynamic secret injection.
     * *(Future Public Repo: `github.com/fashomelab/ansible`)*
 
-### Cloud Integration: Azure
-* **Terraform Backend:** Azure Blob Storage is used for remote state management, a best practice for collaboration and CI/CD pipelines.
-* **Authentication:** An **App Registration** in Microsoft Entra ID acts as a Service Principal, allowing for secure, passwordless authentication from Terraform and other services to Azure.
+* **Azure Cloud Services:**
+    * **Authentication:** A Microsoft Entra ID **App Registration** acts as a Service Principal, providing secure, passwordless authentication for all automated services (like Terraform and ADO) that need to interact with my Azure subscription.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## 💡 DevOps Principles & Skills Demonstrated
 
-This project is a living portfolio of key DevOps principles and engineering skills:
+This project puts the following key DevOps principles and engineering skills into practice:
 
 * **Infrastructure as Code (IaC):** Using **Terraform** to declaratively manage all virtual infrastructure.
 * **GitOps:** Using **ArgoCD** and **FluxCD** to manage Kubernetes cluster state and application deployments directly from Git.
@@ -185,17 +177,17 @@ This `corneb` repository serves as the central hub and public-facing entry point
 ## 🗺️ Roadmap
 
 * [ ] **Integrate Terraform & Ansible:** Create a unified workflow where Terraform provisions a VM and then automatically triggers an Ansible playbook to configure it.
-* [ ] **Enhance CI Pipelines:** Implement CI for the Ansible and Terraform repos to automatically format, lint, and validate code on every push, creating PRs for suggested changes.
+* [ ] **Enhance CI Pipelines:** Implement CI for the Ansible and Terraform repos to automatically format, lint, and validate code on every push.
 * [ ] **Migrate to HashiCorp Vault:** Move all secrets from Ansible Vault to the central HashiCorp Vault instance for dynamic secret management.
 * [ ] **Implement Continuous Deployment (CD):** Develop a CD pipeline to automatically deploy approved application changes to the Kubernetes clusters.
-* [ ] **Publish Sub-Repositories:** Clean up, document, and publish the `terraform`, `ansible`, and `kubernetes` repositories.
+* [ ] **Implement a Service Mesh:** Explore and deploy a service mesh like Istio or Linkerd to manage inter-service communication within the Kubernetes clusters.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## 📞 Contact
 
-Your Name - [Your LinkedIn Profile URL] - your.email@example.com
+Your Name - [https://www.linkedin.com/in/corne-blignaut-10b618a4] - cblignaut989@hotmail.com
 
 Project Link: [https://github.com/fashomelab/corneb](https://github.com/fashomelab/corneb)
 
@@ -214,5 +206,6 @@ A list of resources that have been invaluable in this journey:
 
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: www.linkedin.com/in/corne-blignaut-10b618a  [status-shield]: https://img.shields.io/badge/status-active-success.svg?style=for-the-badge
+[linkedin-url]: https://www.linkedin.com/in/corne-blignaut-10b618a
+[status-shield]: https://img.shields.io/badge/status-active-success.svg?style=for-the-badge
 [status-url]: https://github.com/fashomelab/corneb
