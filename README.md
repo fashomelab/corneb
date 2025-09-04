@@ -206,6 +206,6 @@ A list of resources that have been invaluable in this journey:
 
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/corne-blignaut-10b618a
+[linkedin-url]: https://www.linkedin.com/in/corne-blignaut-10b618a4
 [status-shield]: https://img.shields.io/badge/status-active-success.svg?style=for-the-badge
 [status-url]: https://github.com/fashomelab/corneb
