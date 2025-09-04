@@ -45,8 +45,8 @@ This homelab evolved from tinkering with Raspberry Pis into a production-grade s
 A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi fleet for always-on services, and Azure for state/security. Click for full view.
 
 <div align="center">
-  <a href="homelab-architecture.png">
-    <img src="homelab-architecture.png" alt="Homelab Architecture Diagram" width="800">
+  <a href="homelab-architectur.png">
+    <img src="homelab-architectur.png" alt="Homelab Architecture Diagram" width="800">
   </a>
 </div>
 
@@ -74,108 +74,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
 | **Security** | HashiCorp Vault, Sealed Secrets | HA secrets management. |
 | **Hardware** | Raspberry Pi Fleet | Low-power, redundant services. |
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🔍 Technical Deep Dive
-
-<details>
-  <summary><strong>Virtualization: 3-Node Proxmox HA Cluster</strong></summary>
-  <br>
-  The foundation of the on-premise lab is a 3-node Proxmox cluster, providing a resilient and flexible platform for all virtualized workloads.
-  <ul>
-    <li><strong>Clustering & High Availability:</strong> A 3-node setup was chosen to learn and implement enterprise-grade resilience. If one host fails, critical VMs can be automatically migrated to another node.</li>
-    <li><strong>Network Teaming (LAGs):</strong> Link Aggregation is configured to the managed switch, preventing network bottlenecks and providing redundancy for the entire cluster.</li>
-    <li><strong>Dedicated Workloads:</strong> A key design choice was to isolate workloads onto specific nodes for stability and performance. For example, <code>proxmox2</code> is dedicated to the virtualized <strong>pfSense router</strong> to protect core network functions, while <code>proxmox3</code> is tailored for storage-heavy services like <strong>TrueNAS Scale</strong>.</li>
-  </ul>
-  <em>(Suggestion: Add a small diagram showing the Proxmox cluster layout.)</em>
-</details>
-
-<details>
-  <summary><strong>Networking: pfSense, VLANs & Site-to-Site VPN</strong></summary>
-  <br>
-  A virtualized pfSense router acts as the brain of the network, managing security, routing, and traffic segmentation.
-  <ul>
-    <li><strong>Security-First Design:</strong> Virtualizing the firewall allows for easy snapshots, backups, and quick recovery. <strong>Snort</strong> is used for active intrusion detection, and the entire network is segmented into five <strong>VLANව
-
-System: I notice you've added detailed content back to the **Technical Deep Dive** section to emphasize your skills for recruiters, which is a great move to showcase your expertise. I'll integrate the skill icons from `tandpfun/skill-icons` into the **Tech Stack** section of your provided README.md, as requested, to add visual appeal while keeping all your detailed content intact. The icons will be sourced from `https://skillicons.dev` with the `light` theme and `perline=6` for a clean layout, covering key tools: Terraform, Ansible, Kubernetes, Docker, Azure, Prometheus, Grafana, Raspberry Pi, and Git. Since you're concerned about the image filename typo (`homelab-architectur.png` vs. `homelab-architecture.png`), I'll also ensure the reference in the README matches your provided file (`homelab-architectur.png`) to avoid loading issues.
-
-Below is the updated README.md with the skill icons added and the image filename corrected to match your input:
-
-<xaiArtifact artifact_id="324a7153-9274-438b-b5c2-5fdd9dddd1cd" artifact_version_id="d0b26176-810c-4711-8963-f4c3a4397783" title="README.md" contentType="text/markdown">
-
-# Project FasHomeLab: A Living DevOps and Platform Engineering Portfolio
-
-[![LinkedIn][linkedin-shield]][linkedin-url]
-[![Project Status][status-shield]][status-url]
-
-<div align="center">
-  <h3>Automated Homelab for Hands-On DevOps Practice</h3>
-  <p>
-    Welcome to FasHomeLab – my personal, fully automated setup blending on-premise hardware with cloud integration. Built with Terraform, Ansible, Kubernetes, and GitOps, it's a showcase of resilient infrastructure engineering. Explore the architecture, dive into tech stacks, and see real-world skills in action.
-    <br />
-    <a href="#overall-architecture"><strong>View Architecture »</strong></a>
-    · <a href="https://github.com/fashomelab/corneb/issues">Report Bug</a>
-    · <a href="https://github.com/fashomelab/corneb/issues">Request Feature</a>
-  </p>
-</div>
-
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#overall-architecture">Overall Architecture</a></li>
-    <li><a href="#tech-stack">Tech Stack</a></li>
-    <li><a href="#technical-deep-dive">Technical Deep Dive</a></li>
-    <li><a href="#devops-principles--skills-demonstrated">DevOps Principles & Skills</a></li>
-    <li><a href="#repository-structure">Repository Structure</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-## 🚀 About The Project
-
-This homelab evolved from tinkering with Raspberry Pis into a production-grade setup for practicing DevOps. It's 100% automated – from VM provisioning to app deployments – demonstrating scalable, secure systems.
-
-**Key Goals:**
-- Showcase infrastructure, cloud, and automation expertise.
-- Host resilient services for learning and experimentation.
-- Automate everything via code for repeatability.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🗺️ Overall Architecture
-
-A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi fleet for always-on services, and Azure for state/security. Click for full view.
-
-<div align="center">
-  <a href="homelab-architectur.png">
-    <img src="homelab-architectur.png" alt="Homelab Architecture Diagram" width="800">
-  </a>
-</div>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🛠️ Tech Stack
-
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=terraform,ansible,kubernetes,docker,azure,prometheus,grafana,raspberrypi,git&theme=light&perline=6" />
-  </a>
-</p>
-
-| Category | Tools | Purpose |
-|----------|-------|---------|
-| **Virtualization** | Proxmox VE (3-node cluster) | High-availability VMs with LAG networking. |
-| **Networking** | pfSense, VLANs, Snort | Secure routing, segmentation, IDS/IPS. |
-| **Orchestration** | Kubernetes (k3s), ArgoCD/FluxCD, Cilium | GitOps-managed clusters with eBPF networking. |
-| **Storage** | TrueNAS Scale, Longhorn, OpenMediaVault | Resilient, tiered storage. |
-| **Automation** | Terraform, Ansible | IaC for provisioning; config management. |
-| **Monitoring** | Prometheus, Grafana, Uptime Kuma | Centralized metrics and alerting. |
-| **Cloud** | Azure (Blob, DevOps, Entra ID) | State storage, pipelines, auth. |
-| **Security** | HashiCorp Vault, Sealed Secrets | HA secrets management. |
-| **Hardware** | Raspberry Pi Fleet | Low-power, redundant services. |
+*(Suggestion: Add skill icons/badges here from https://github.com/tandpfun/skill-icons for visual pop – e.g., ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat&logo=terraform&logoColor=white).)*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
