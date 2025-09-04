@@ -45,8 +45,8 @@ This homelab evolved from tinkering with Raspberry Pis into a production-grade s
 A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi fleet for always-on services, and Azure for state/security. Click for full view.
 
 <div align="center">
-  <a href="homelab-architectur.png">
-    <img src="homelab-architectur.png" alt="Homelab Architecture Diagram" width="800">
+  <a href="homelab-architecture.png">
+    <img src="homelab-architecture.png" alt="Homelab Architecture Diagram" width="800">
   </a>
 </div>
 
