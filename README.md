@@ -6,7 +6,7 @@
 <div align="center">
   <h3>Automated Homelab for Hands-On DevOps Practice</h3>
   <p>
-    Welcome to FasHomeLab – my personal, fully automated setup blending on-premise hardware with cloud integration. Built with Terraform, Ansible, Kubernetes, and GitOps, it's a showcase of resilient infrastructure engineering. Explore the architecture, dive into tech stacks, and see real-world skills in action.
+    Welcome to FasHomeLab. What began as a passion project with a few Raspberry Pis has evolved into this fully automated setup blending on-premise hardware with cloud integration. Built with Terraform, Ansible, Kubernetes, and GitOps, it's a living showcase of my skills in building resilient, code-driven systems.
     <br />
     <a href="#overall-architecture"><strong>View Architecture »</strong></a>
     · <a href="https://github.com/fashomelab/corneb/issues">Report Bug</a>
@@ -50,8 +50,6 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   </a>
 </div>
 
-*(Note: If the image isn't loading, check for a filename typo – it might be "homelab-architecture.png" with an 'e'.)*
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🛠️ Tech Stack
@@ -89,7 +87,6 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong>Network Teaming (LAGs):</strong> Link Aggregation is configured to the managed switch, preventing network bottlenecks and providing redundancy for the entire cluster.</li>
     <li><strong>Dedicated Workloads:</strong> A key design choice was to isolate workloads onto specific nodes for stability and performance. For example, <code>proxmox2</code> is dedicated to the virtualized <strong>pfSense router</strong> to protect core network functions, while <code>proxmox3</code> is tailored for storage-heavy services like <strong>TrueNAS Scale</strong>.</li>
   </ul>
-  <em>(Suggestion: Add a small diagram showing the Proxmox cluster layout.)</em>
 </details>
 
 <details>
@@ -101,7 +98,6 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong>VPN Gateway:</strong> The firewall functions as a central VPN gateway, providing two key capabilities: secure <strong>remote access</strong> into the homelab (as a VPN server), and a persistent <strong>site-to-site (S2S) tunnel</strong> to Microsoft Azure, securely bridging my on-premise and cloud environments.</li>
     <li><strong>Core Services:</strong> All essential network services (DHCP, DNS, firewall rules) are centralized on pfSense for simplified management.</li>
   </ul>
-  <em>(Suggestion: Add a diagram showing VLAN segmentation.)</em>
 </details>
 
 <details>
@@ -113,7 +109,6 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong><code>horizon-mountain</code> (Production Cluster):</strong> This cluster is dedicated to running primary, user-facing applications for the internal network. Managed by <strong>ArgoCD</strong>, it uses <strong>Cilium with BGP</strong> for advanced eBPF networking and includes a production-grade stack with <strong>HashiCorp Vault (HA)</strong> and <strong>Longhorn</strong> for storage. Access is strictly internal, protected from the public internet.</li>
     <li><strong><code>zero-dawn</code> (Dev/Test & CI Cluster):</strong> This cluster acts as a sandbox and hosts CI/CD infrastructure, including <strong>self-hosted GitHub Actions runners</strong>. This isolates resource-intensive build jobs from the production environment, ensuring performance and security.</li>
   </ol>
-  <em>(Suggestion: Add screenshots of Rancher or ArgoCD.)</em>
 </details>
 
 <details>
@@ -121,12 +116,11 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   <br>
   To ensure critical services are always online without the power consumption of the main server cluster, a dedicated fleet of low-power Raspberry Pis runs 24/7. This is a deliberate design choice focused on energy efficiency and resilience.
   <ul>
-    <li><strong><code>ravager</code> & <code>apollo</code> (HA DNS):</strong> A redundant <strong>Pi-hole</strong> setup in an active/passive cluster using <strong>Keepalived</strong> to manage a virtual IP for seamless failover.</li>
-    <li><strong><code>thunderjaw</code> (External Monitoring):</strong> Runs <strong>Uptime Kuma</strong> to monitor all infrastructure from an external viewpoint, ensuring alerts are sent even if the primary network is down.</li>
+    <li><strong><code>ravager</code> & <code>apollo</code> (HA DNS):</strong> DNS is the most critical service in the lab; if it's down, nothing works. This is a redundant <strong>Pi-hole</strong> setup in an active/passive cluster using <strong>Keepalived</strong> to manage a virtual IP for seamless failover.</li>
+    <li><strong><code>thunderjaw</code> (External Monitoring):</strong> To provide a true external viewpoint, this Pi runs <strong>Uptime Kuma</strong>. It monitors all infrastructure from outside the main cluster, ensuring I get alerts even if the primary network or hosts are down.</li>
     <li><strong><code>sawtooth</code> (Isolated I/O Workloads):</strong> This node is dedicated to a high-volume data ingestion workload, keeping this high-churn activity separate from the main storage arrays to protect their performance.</li>
     <li><strong><code>stormbird</code> (Tiered Storage & Central Monitoring):</strong> Runs <strong>OpenMediaVault</strong> as a fast staging area for data, which is then synced nightly to the main TrueNAS VM. It also hosts the central <strong>Prometheus</strong> & <strong>Grafana</strong> "single pane of glass" for the entire lab.</li>
   </ul>
-  <em>(Suggestion: Add a photo or diagram of the Pi fleet.)</em>
 </details>
 
 <details>
@@ -138,7 +132,6 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong>Ansible (Configuration Management):</strong> Configures new VMs after provisioning, handling security hardening and application setup. Playbooks are triggered automatically by an <strong>Azure DevOps</strong> pipeline.</li>
     <li><strong>Azure Cloud Services:</strong> An <strong>Entra ID App Registration</strong> provides secure, passwordless authentication for all automated services (Terraform, ADO) interacting with the Azure subscription.</li>
   </ul>
-  <em>(Suggestion: Add a flowchart showing the Terraform → Ansible workflow.)</em>
 </details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
