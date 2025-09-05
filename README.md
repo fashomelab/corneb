@@ -56,8 +56,17 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=terraform,ansible,kubernetes,docker,azure,prometheus,grafana,raspberrypi,git&theme=light&perline=6" />
+     <img src="https://skillicons.dev/icons?i=terraform,ansible,kubernetes,docker,azure,prometheus,grafana,raspberrypi,git,github,githubactions,nginx,linux&theme=light" />
   </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Proxmox-E52F2F?style=for-the-badge&logo=proxmox&logoColor=white" alt="Proxmox"/>
+  <img src="https://img.shields.io/badge/ArgoCD-EF7422?style=for-the-badge&logo=argocd&logoColor=white" alt="ArgoCD"/>
+  <img src="https://img.shields.io/badge/Flux-4695CF?style=for-the-badge&logo=flux&logoColor=white" alt="FluxCD"/>
+  <img src="https://img.shields.io/badge/pfSense-212121?style=for-the-badge&logo=pfsense&logoColor=white" alt="pfSense"/>
+  <img src="https://img.shields.io/badge/TrueNAS-0095D5?style=for-the-badge&logo=truenas&logoColor=white" alt="TrueNAS"/>
+  <img src="https://img.shields.io/badge/Longhorn-0077B5?style=for-the-badge&logo=longhorn&logoColor=white" alt="Longhorn"/>
 </p>
 
 | Category | Tools | Purpose |
