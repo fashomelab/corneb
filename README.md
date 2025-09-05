@@ -95,6 +95,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   <summary><strong>Virtualization: 3-Node Proxmox HA Cluster</strong></summary>
   <br>
   The foundation of the on-premise lab is a 3-node Proxmox cluster, providing a resilient and flexible platform for all virtualized workloads.
+
   <ul>
     <li><strong>Clustering & High Availability:</strong> A 3-node setup was chosen to learn and implement enterprise-grade resilience. If one host fails, critical VMs can be automatically migrated to another node.</li>
     <li><strong>Network Teaming (LAGs):</strong> Link Aggregation is configured to the managed switch, preventing network bottlenecks and providing redundancy for the entire cluster.</li>
@@ -106,6 +107,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   <summary><strong>Networking: pfSense, VLANs & Site-to-Site VPN</strong></summary>
   <br>
   A virtualized pfSense router acts as the brain of the network, managing security, routing, and traffic segmentation.
+
   <ul>
     <li><strong>Security-First Design:</strong> Virtualizing the firewall allows for easy snapshots, backups, and quick recovery. <strong>Snort</strong> is used for active intrusion detection, and the entire network is segmented into five <strong>VLANs</strong> to prevent lateral movement. For example, untrusted IoT devices are on a separate network and cannot access management interfaces.</li>
     <li><strong>VPN Gateway:</strong> The firewall functions as a central VPN gateway, providing two key capabilities: secure <strong>remote access</strong> into the homelab (as a VPN server), and a persistent <strong>site-to-site (S2S) tunnel</strong> to Microsoft Azure, securely bridging my on-premise and cloud environments.</li>
@@ -117,6 +119,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   <summary><strong>Kubernetes: Multi-Cluster GitOps Environment (k3s)</strong></summary>
   <br>
   The heart of my service deployment strategy is a multi-cluster Kubernetes environment. This setup mirrors enterprise best practices by separating management, production, and development workloads for enhanced security and stability. All clusters are managed declaratively using GitOps principles.
+
   <ol>
     <li><strong><code>cauldron-factory</code> (Management Cluster):</strong> This cluster follows the "management cluster" pattern, providing a central point of control. Managed by <strong>FluxCD</strong>, it hosts <strong>Rancher</strong> for UI-based management, along with core services like Traefik and Cert-Manager.</li>
     <li><strong><code>horizon-mountain</code> (Production Cluster):</strong> This cluster is dedicated to running primary, user-facing applications for the internal network. Managed by <strong>ArgoCD</strong>, it uses <strong>Cilium with BGP</strong> for advanced eBPF networking and includes a production-grade stack with <strong>HashiCorp Vault (HA)</strong> and <strong>Longhorn</strong> for storage. Access is strictly internal, protected from the public internet.</li>
@@ -128,6 +131,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   <summary><strong>Physical Infrastructure: High-Availability Raspberry Pi Fleet</strong></summary>
   <br>
   To ensure critical services are always online without the power consumption of the main server cluster, a dedicated fleet of low-power Raspberry Pis runs 24/7. This is a deliberate design choice focused on energy efficiency and resilience.
+
   <ul>
     <li><strong><code>ravager</code> & <code>apollo</code> (HA DNS):</strong> DNS is the most critical service in the lab; if it's down, nothing works. This is a redundant <strong>Pi-hole</strong> setup in an active/passive cluster using <strong>Keepalived</strong> to manage a virtual IP for seamless failover.</li>
     <li><strong><code>thunderjaw</code> (External Monitoring):</strong> To provide a true external viewpoint, this Pi runs <strong>Uptime Kuma</strong>. It monitors all infrastructure from outside the main cluster, ensuring I get alerts even if the primary network or hosts are down.</li>
@@ -140,6 +144,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   <summary><strong>Automation: IaC & Hybrid Cloud Strategy</strong></summary>
   <br>
   Automation is the central principle of this lab, with a clear separation of concerns between provisioning (Terraform) and configuration (Ansible).
+  
   <ul>
     <li><strong>Terraform (IaC):</strong> Manages the entire lifecycle of all Proxmox VMs, with state stored securely in <strong>Azure Blob Storage</strong> to enable CI/CD integration.</li>
     <li><strong>Ansible (Configuration Management):</strong> Configures new VMs after provisioning, handling security hardening and application setup. Playbooks are triggered automatically by an <strong>Azure DevOps</strong> pipeline.</li>
