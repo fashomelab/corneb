@@ -54,8 +54,6 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
 
 ## 🛠️ Tech Stack
 
-## 🛠️ Tech Stack
-
 <p align="center">
   <strong>Virtualization & Networking:</strong><br>
   <img src="https://img.shields.io/badge/Proxmox-E52F2F?style=for-the-badge&logo=proxmox&logoColor=white" alt="Proxmox"/>
@@ -90,6 +88,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
 </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 | Category | Tools | Purpose |
 |----------|-------|---------|
 | **Virtualization** | Proxmox VE (3-node cluster) | High-availability VMs with LAG networking. |
