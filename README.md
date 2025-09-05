@@ -89,22 +89,6 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-| Category | Tools | Purpose |
-|----------|-------|---------|
-| **Virtualization** | Proxmox VE (3-node cluster) | High-availability VMs with LAG networking. |
-| **Networking** | pfSense, VLANs, Snort | Secure routing, segmentation, IDS/IPS. |
-| **Orchestration** | Kubernetes (k3s), ArgoCD/FluxCD, Cilium | GitOps-managed clusters with eBPF networking. |
-| **Storage** | TrueNAS Scale, Longhorn, OpenMediaVault | Resilient, tiered storage. |
-| **Automation** | Terraform, Ansible | IaC for provisioning; config management. |
-| **Monitoring** | Prometheus, Grafana, Uptime Kuma | Centralized metrics and alerting. |
-| **Cloud** | Azure (Blob, DevOps, Entra ID) | State storage, pipelines, auth. |
-| **Security** | HashiCorp Vault, Sealed Secrets | HA secrets management. |
-| **Hardware** | Raspberry Pi Fleet | Low-power, redundant services. |
-
-*(Suggestion: Add skill icons/badges here from https://github.com/tandpfun/skill-icons for visual pop – e.g., ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat&logo=terraform&logoColor=white).)*
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## 🔍 Technical Deep Dive
 
 <details>
