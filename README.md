@@ -6,7 +6,9 @@
 <div align="center">
   <h3>Automated Homelab for Hands-On DevOps Practice</h3>
   <p>
-    Welcome to FasHomeLab. What began as a passion project with a few Raspberry Pis has evolved into this fully automated setup blending on-premise hardware with cloud integration. Built with Terraform, Ansible, Kubernetes, and GitOps, it's a living showcase of my skills in building resilient, code-driven systems.
+    Welcome to FasHomeLab. Inspired by the complex, automated systems of the <em>Horizon</em> game series, this project is where my passion for gaming and technology comes together. I named the lab after "FAS" (Faro Automated Solutions) from the game, creating a place where I practice building my own resilient, code-driven systems.
+    <br><br>
+    What started with a few Raspberry Pis has become a fully automated setup blending on-premise hardware with cloud integration. Built with <strong>Terraform</strong>, <strong>Ansible</strong>, <strong>Kubernetes</strong>, and <strong>GitOps</strong>, it's a living showcase of my real-world engineering skills.
     <br />
     <a href="#overall-architecture"><strong>View Architecture »</strong></a>
     · <a href="https://github.com/fashomelab/corneb/issues">Report Bug</a>
@@ -31,12 +33,14 @@
 
 ## 🚀 About The Project
 
-This homelab evolved from tinkering with Raspberry Pis into a production-grade setup for practicing DevOps. It's 100% automated – from VM provisioning to app deployments – demonstrating scalable, secure systems.
+This project is the result of a long-standing passion for building automated systems, inspired by the complex worlds in games like *Horizon*. What began as a small cluster of Raspberry Pis for hands-on learning has evolved into the production-grade platform you see today.
+
+My focus has been on automating everything from server builds to application deployments, allowing me to practice building the kind of resilient and secure infrastructure seen in professional environments.
 
 **Key Goals:**
-- Showcase infrastructure, cloud, and automation expertise.
-- Host resilient services for learning and experimentation.
-- Automate everything via code for repeatability.
+- Showcase a comprehensive skillset in infrastructure, cloud, and automation.
+- Host resilient services for my own learning and experimentation.
+- Automate everything possible via code for true repeatability.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -144,7 +148,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   <summary><strong>Automation: IaC & Hybrid Cloud Strategy</strong></summary>
   <br>
   Automation is the central principle of this lab, with a clear separation of concerns between provisioning (Terraform) and configuration (Ansible).
-  
+
   <ul>
     <li><strong>Terraform (IaC):</strong> Manages the entire lifecycle of all Proxmox VMs, with state stored securely in <strong>Azure Blob Storage</strong> to enable CI/CD integration.</li>
     <li><strong>Ansible (Configuration Management):</strong> Configures new VMs after provisioning, handling security hardening and application setup. Playbooks are triggered automatically by an <strong>Azure DevOps</strong> pipeline.</li>
@@ -178,7 +182,7 @@ Central hub for the project. Private repos will go public soon:
 - **/terraform:** Proxmox/Azure IaC.
 - **/ansible:** Playbooks/roles.
 - **/kubernetes:** Manifests, Helm, GitOps configs.
-- **homelab-architectur.png:** Main diagram.
+- **homelab-architecture.png:** Main diagram.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
