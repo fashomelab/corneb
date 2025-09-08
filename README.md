@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 # Project FasHomeLab: A Living DevOps and Platform Engineering Portfolio
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -19,15 +21,15 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#overall-architecture">Overall Architecture</a></li>
-    <li><a href="#tech-stack">Tech Stack</a></li>
-    <li><a href="#technical-deep-dive">Technical Deep Dive</a></li>
-    <li><a href="#devops-principles--skills-demonstrated">DevOps Principles & Skills</a></li>
-    <li><a href="#repository-structure">Repository Structure</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#-about-the-project">About The Project</a></li>
+    <li><a href="#️-overall-architecture">Overall Architecture</a></li>
+    <li><a href="#️-tech-stack">Tech Stack</a></li>
+    <li><a href="#-technical-deep-dive">Technical Deep Dive</a></li>
+    <li><a href="#-devops-principles--skills-demonstrated">DevOps Principles & Skills Demonstrated</a></li>
+    <li><a href="#️-repository-structure">Repository Structure</a></li>
+    <li><a href="#️-roadmap">Roadmap</a></li>
+    <li><a href="#-contact">Contact</a></li>
+    <li><a href="#-acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
