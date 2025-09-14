@@ -51,9 +51,10 @@ My focus has been on automating everything from server builds to application dep
 A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi fleet for always-on services, and Azure for state/security. Click for full view.
 
 <div align="center">
-  <a href="homelab-architecture.png">
-    <img src="homelab-architecture.png" alt="Homelab Architecture Diagram" width="800">
+  <a href="images/homelab-architecture.png">
+    <img src="images/homelab-architecture.png" alt="Homelab Architecture Diagram" width="800">
   </a>
+  <p><em>Homelab Architecture Diagram.</em></p>
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -131,6 +132,11 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong><code>horizon-mountain</code> (Production Cluster):</strong> This cluster is dedicated to running primary, user-facing applications for the internal network. Managed by <strong>ArgoCD</strong>, it uses <strong>Cilium with BGP</strong> for advanced eBPF networking and includes a production-grade stack with <strong>HashiCorp Vault (HA)</strong> and <strong>Longhorn</strong> for storage. Access is strictly internal, protected from the public internet.</li>
     <li><strong><code>zero-dawn</code> (Dev/Test & CI Cluster):</strong> This cluster acts as a sandbox and hosts CI/CD infrastructure, including <strong>self-hosted GitHub Actions runners</strong>. This isolates resource-intensive build jobs from the production environment, ensuring performance and security.</li>
   </ol>
+
+  <div align="center">
+    <img src="images/kubernetes-clusters.png" alt="Multi-Cluster Kubernetes Setup with GitOps Management" width="600">
+    <p><em>Multi-Cluster Kubernetes Setup with GitOps Management.</em></p>
+  </div>
 </details>
 
 <details>
@@ -144,6 +150,16 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong><code>sawtooth</code> (Isolated I/O Workloads):</strong> This node is dedicated to a high-volume data ingestion workload, keeping this high-churn activity separate from the main storage arrays to protect their performance.</li>
     <li><strong><code>stormbird</code> (Tiered Storage & Central Monitoring):</strong> Runs <strong>OpenMediaVault</strong> as a fast staging area for data, which is then synced nightly to the main TrueNAS VM. It also hosts the central <strong>Prometheus</strong> & <strong>Grafana</strong> "single pane of glass" for the entire lab.</li>
   </ul>
+
+  <div align="center">
+    <img src="images/uptime-kuma-monitoring.png" alt="Uptime Kuma Monitoring for thunderjaw" width="600">
+    <p><em>Uptime Kuma Monitoring for thunderjaw.</em></p>
+  </div>
+
+  <div align="center">
+    <img src="images/cluster-usage-grafana-monitoring.png" alt="Cluster Usage Monitoring with Grafana on stormbird" width="600">
+    <p><em>Cluster Usage Monitoring with Grafana on stormbird.</em></p>
+  </div>
 </details>
 
 <details>
@@ -190,11 +206,10 @@ Central hub for the project. Private repos will go public soon:
 
 ## 🗺️ Roadmap
 
-- [ ] Unified Terraform/Ansible workflow.
-- [ ] CI for Ansible/Terraform (lint/validate).
-- [ ] Migrate secrets to HashiCorp Vault.
-- [ ] CD pipelines for K8s apps.
-- [ ] Add service mesh (Istio/Linkerd).
+- [ ] **Unified Terraform/Ansible workflow:** Integrate IaC and configuration management for seamless, end-to-end server provisioning.
+- [ ] **CI for Ansible & Kubernetes:** Expand the CI/CD pipeline to include linting and validation for Ansible roles and Kubernetes manifests.
+- [ ] **Migrate all secrets to HashiCorp Vault:** Centralize all secrets (including Ansible Vault) into a single, secure source of truth.
+- [ ] **Implement a Service Mesh (Istio/Linkerd):** Enhance security and observability within the Kubernetes clusters by adding a service mesh for mTLS and traffic management.
 
 See issues for more.
 
