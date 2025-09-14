@@ -168,7 +168,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   Automation is the central principle of this lab, with a clear separation of concerns between provisioning (Terraform) and configuration (Ansible).
 
   <ul>
-    <li><strong>Terraform (IaC):</strong> Manages the entire lifecycle of all Proxmox VMs, with state stored securely in <strong>Azure Blob Storage</strong> to enable CI/CD integration.</li>
+    <li><strong>Terraform (IaC):</strong> Manages the entire lifecycle of all Proxmox VMs, with state stored securely in <strong>Azure Blob Storage</strong> to enable CI/CD integration. [View the Terraform repository here](https://github.com/fashomelab/terraform).</li>
     <li><strong>Ansible (Configuration Management):</strong> Configures new VMs after provisioning, handling security hardening and application setup. Playbooks are triggered automatically by an <strong>Azure DevOps</strong> pipeline.</li>
     <li><strong>Azure Cloud Services:</strong> An <strong>Entra ID App Registration</strong> provides secure, passwordless authentication for all automated services (Terraform, ADO) interacting with the Azure subscription.</li>
   </ul>
@@ -197,7 +197,7 @@ This project puts the following key DevOps principles and engineering skills int
 
 Central hub for the project. Private repos will go public soon:
 
-- **/terraform:** Proxmox/Azure IaC.
+- **/terraform:** Proxmox/Azure IaC. [View the Terraform repository here](https://github.com/fashomelab/terraform).
 - **/ansible:** Playbooks/roles.
 - **/kubernetes:** Manifests, Helm, GitOps configs.
 - **homelab-architecture.png:** Main diagram.
