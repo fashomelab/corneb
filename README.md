@@ -108,6 +108,11 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong>Network Teaming (LAGs):</strong> Link Aggregation is configured to the managed switch, preventing network bottlenecks and providing redundancy for the entire cluster.</li>
     <li><strong>Dedicated Workloads:</strong> A key design choice was to isolate workloads onto specific nodes for stability and performance. For example, <code>proxmox2</code> is dedicated to the virtualized <strong>pfSense router</strong> to protect core network functions, while <code>proxmox3</code> is tailored for storage-heavy services like <strong>TrueNAS Scale</strong>.</li>
   </ul>
+
+  <div align="center">
+    <img src="images/three-node-proxmox-ha-cluster.png" alt="Three-Node Proxmox HA Cluster Diagram" width="600">
+    <p><em>Three-Node Proxmox HA Cluster Diagram.</em></p>
+  </div>
 </details>
 
 <details>
@@ -150,16 +155,17 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong><code>sawtooth</code> (Isolated I/O Workloads):</strong> This node is dedicated to a high-volume data ingestion workload, keeping this high-churn activity separate from the main storage arrays to protect their performance.</li>
     <li><strong><code>stormbird</code> (Tiered Storage & Central Monitoring):</strong> Runs <strong>OpenMediaVault</strong> as a fast staging area for data, which is then synced nightly to the main TrueNAS VM. It also hosts the central <strong>Prometheus</strong> & <strong>Grafana</strong> "single pane of glass" for the entire lab.</li>
   </ul>
+  
+  <div align="center">
+    <img src="images/cluster-usage-grafana-monitoring.png" alt="Cluster Usage Monitoring with Grafana on stormbird" width="600">
+    <p><em>Cluster Usage Monitoring with Grafana on stormbird.</em></p>
+  </div>
 
   <div align="center">
     <img src="images/uptime-kuma-monitoring.png" alt="Uptime Kuma Monitoring for thunderjaw" width="600">
     <p><em>Uptime Kuma Monitoring for thunderjaw.</em></p>
   </div>
-
-  <div align="center">
-    <img src="images/cluster-usage-grafana-monitoring.png" alt="Cluster Usage Monitoring with Grafana on stormbird" width="600">
-    <p><em>Cluster Usage Monitoring with Grafana on stormbird.</em></p>
-  </div>
+  
 </details>
 
 <details>
