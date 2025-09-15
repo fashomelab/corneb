@@ -221,12 +221,27 @@ Central hub for the project. Private repos will go public soon:
 
 ## 🗺️ Roadmap
 
-- [ ] **Unified Terraform/Ansible workflow:** Integrate IaC and configuration management for seamless, end-to-end server provisioning.
-- [ ] **CI for Ansible & Kubernetes:** Expand the CI/CD pipeline to include linting and validation for Ansible roles and Kubernetes manifests.
-- [ ] **Migrate all secrets to HashiCorp Vault:** Centralize all secrets (including Ansible Vault) into a single, secure source of truth.
-- [ ] **Implement a Service Mesh (Istio/Linkerd):** Enhance security and observability within the Kubernetes clusters by adding a service mesh for mTLS and traffic management.
+My focus for this project is on continuous improvement. Here is a high-level overview of my completed milestones and future goals.
 
-See issues for more.
+### ✅ Completed
+
+* **Infrastructure as Code (Terraform):**
+    * [x]  Built a fully automated, multi-environment infrastructure for both on-premise (Proxmox) and cloud (Azure) platforms.
+    * [x]  Implemented a secure, secretless CI/CD pipeline in GitHub Actions for complete validation of all Terraform code.
+    * [x]  Centralized secrets management for Terraform with a self-hosted HashiCorp Vault instance.
+
+### 🚀 Next Up: Configuration Management & GitOps
+
+Now that the foundational infrastructure is automated, my next focus is on the software layer.
+
+* **Ansible & Configuration Management:**
+    * [ ] **CI for Ansible:** Create a dedicated CI/CD pipeline to lint and validate all Ansible roles and playbooks.
+    * [ ] **Unified Provisioning Workflow:** Integrate the Terraform and Ansible pipelines for a seamless, end-to-end server provisioning and configuration process.
+    * [ ] **Centralize Ansible Secrets:** Migrate all secrets from Ansible Vault into HashiCorp Vault for a single source of truth.
+
+* **Kubernetes & GitOps:**
+    * [ ] **CI for Kubernetes:** Expand the CI/CD pipeline to include validation for all Kubernetes manifests.
+    * [ ] **Implement a Service Mesh (Istio/Linkerd):** Enhance security and observability within the Kubernetes clusters by adding a service mesh for mTLS and traffic management.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
