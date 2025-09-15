@@ -213,10 +213,9 @@ This project puts the following key DevOps principles and engineering skills int
 
 Central hub for the project. Private repos will go public soon:
 
-- **/terraform:** Proxmox/Azure IaC. [View the Terraform repository here](https://github.com/fashomelab/homelab-terraform).
+- **[Terraform IaC](https://github.com/fashomelab/homelab-terraform):** Contains all Infrastructure as Code for both on-premise (Proxmox) and cloud (Azure) environments.
 - **/ansible:** Playbooks/roles.
 - **/kubernetes:** Manifests, Helm, GitOps configs.
-- **homelab-architecture.png:** Main diagram.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
