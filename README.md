@@ -52,7 +52,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
 
 <div align="center">
   <a href="images/homelab-architecture.png">
-    <img src="images/homelab-architecture.png" alt="Homelab Architecture Diagram" width="800">
+    <img src="images/homelab-architecture.png" alt="Hybrid Homelab Architecture with Proxmox, Raspberry Pi, and Azure" width="800">
   </a>
   <p><em>Homelab Architecture Diagram.</em></p>
 </div>
@@ -110,7 +110,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   </ul>
 
   <div align="center">
-    <img src="images/three-node-proxmox-ha-cluster.png" alt="Three-Node Proxmox HA Cluster Diagram" width="600">
+    <img src="images/three-node-proxmox-ha-cluster.png" alt="Three-Node Proxmox High Availability Cluster Diagram" width="600">
     <p><em>Three-Node Proxmox HA Cluster Diagram.</em></p>
   </div>
 </details>
@@ -127,7 +127,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   </ul>
 
   <div align="center">
-    <img src="images/pfsense-vlan-and-vpn-architecture.png" alt="pfSense VLAN and VPN Network Architecture" width="600">
+    <img src="images/pfsense-vlan-and-vpn-architecture.png" alt="pfSense Network Architecture with VLAN Segmentation and VPN Connections" width="600">
     <p><em>pfSense VLAN and VPN Network Architecture.</em></p>
   </div>
 </details>
@@ -144,7 +144,7 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
   </ol>
 
   <div align="center">
-    <img src="images/kubernetes-clusters.png" alt="Multi-Cluster Kubernetes Setup with GitOps Management" width="600">
+    <img src="images/kubernetes-clusters.png" alt="Multi-Cluster Kubernetes Environment with GitOps Management Using k3s" width="600">
     <p><em>Multi-Cluster Kubernetes Setup with GitOps Management.</em></p>
   </div>
 </details>
@@ -160,17 +160,16 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong><code>sawtooth</code> (Isolated I/O Workloads):</strong> This node is dedicated to a high-volume data ingestion workload, keeping this high-churn activity separate from the main storage arrays to protect their performance.</li>
     <li><strong><code>stormbird</code> (Tiered Storage & Central Monitoring):</strong> Runs <strong>OpenMediaVault</strong> as a fast staging area for data, which is then synced nightly to the main TrueNAS VM. It also hosts the central <strong>Prometheus</strong> & <strong>Grafana</strong> "single pane of glass" for the entire lab.</li>
   </ul>
-  
+
   <div align="center">
-    <img src="images/cluster-usage-grafana-monitoring.png" alt="Cluster Usage Monitoring with Grafana on stormbird" width="600">
+    <img src="images/cluster-usage-grafana-monitoring.png" alt="Cluster Usage Monitoring Dashboard with Grafana on stormbird Raspberry Pi" width="600">
     <p><em>Cluster Usage Monitoring with Grafana on stormbird.</em></p>
   </div>
 
   <div align="center">
-    <img src="images/uptime-kuma-monitoring.png" alt="Uptime Kuma Monitoring for thunderjaw" width="600">
+    <img src="images/uptime-kuma-monitoring.png" alt="Uptime Kuma Monitoring Dashboard for thunderjaw Raspberry Pi" width="600">
     <p><em>Uptime Kuma Monitoring for thunderjaw.</em></p>
   </div>
-  
 </details>
 
 <details>
