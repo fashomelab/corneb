@@ -203,6 +203,12 @@ This project puts the following key DevOps principles and engineering skills int
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 🏆 Key Achievements
+
+* **Fully Automated Provisioning:** Reduced the time to deploy a new, fully configured Proxmox VM from over 30 minutes of manual work to under 5 minutes using Terraform and Ansible.
+* **Zero-Downtime Deployments:** Implemented a GitOps workflow with ArgoCD, enabling consistent and reliable application deployments to the production Kubernetes cluster.
+* **Enhanced Security Posture:** Eliminated all long-lived secrets from the CI/CD process by implementing a secure, OIDC-based authentication flow with HashiCorp Vault.
+
 ## 🏗️ Repository Structure
 
 Central hub for the project. Private repos will go public soon:
