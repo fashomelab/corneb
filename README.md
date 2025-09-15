@@ -125,6 +125,11 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
     <li><strong>VPN Gateway:</strong> The firewall functions as a central VPN gateway, providing two key capabilities: secure <strong>remote access</strong> into the homelab (as a VPN server), and a persistent <strong>site-to-site (S2S) tunnel</strong> to Microsoft Azure, securely bridging my on-premise and cloud environments.</li>
     <li><strong>Core Services:</strong> All essential network services (DHCP, DNS, firewall rules) are centralized on pfSense for simplified management.</li>
   </ul>
+
+  <div align="center">
+    <img src="images/pfsense-vlan-and-vpn-architecture.png" alt="pfSense VLAN and VPN Network Architecture" width="600">
+    <p><em>pfSense VLAN and VPN Network Architecture.</em></p>
+  </div>
 </details>
 
 <details>
