@@ -3,7 +3,7 @@
 # Project FasHomeLab: A Living DevOps and Platform Engineering Portfolio
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
-[![Project Status][status-shield]][status-url]
+[![Portfolio CI][status-shield]][status-url]
 
 <div align="center">
   <h3>Automated Homelab for Hands-On DevOps Practice</h3>
@@ -43,6 +43,8 @@ My focus has been on automating everything from server builds to application dep
 - Showcase a comprehensive skillset in infrastructure, cloud, and automation.
 - Host resilient services for my own learning and experimentation.
 - Automate everything possible via code for true repeatability.
+
+**Explore the Code**: Check out [Terraform](https://github.com/fashomelab/homelab-terraform), [Ansible](https://github.com/fashomelab/ansible), or dive into issues to contribute!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -214,7 +216,7 @@ This project puts the following key DevOps principles and engineering skills int
 Central hub for the project. Private repos will go public soon:
 
 - **[Terraform IaC](https://github.com/fashomelab/homelab-terraform):** Contains all Infrastructure as Code for both on-premise (Proxmox) and cloud (Azure) environments.
-- **/ansible:** Playbooks/roles.
+- **[Ansible](https://github.com/fashomelab/ansible)**: Playbooks and roles for configuration management. Automates Proxmox VMs and Raspberry Pis with dynamic inventories and Vault integration.
 - **/kubernetes:** Manifests, Helm, GitOps configs.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -226,18 +228,20 @@ My focus for this project is on continuous improvement. Here is a high-level ove
 ### ✅ Completed
 
 * **Infrastructure as Code (Terraform):**
-    * [x]  Built a fully automated, multi-environment infrastructure for both on-premise (Proxmox) and cloud (Azure) platforms.
-    * [x]  Implemented a secure, secretless CI/CD pipeline in GitHub Actions for complete validation of all Terraform code.
-    * [x]  Centralized secrets management for Terraform with a self-hosted HashiCorp Vault instance.
+    * [x] Built a fully automated, multi-environment infrastructure for both on-premise (Proxmox) and cloud (Azure) platforms.
+    * [x] Implemented a secure, secretless CI/CD pipeline in GitHub Actions for complete validation of all Terraform code.
+    * [x] Centralized secrets management for Terraform with a self-hosted HashiCorp Vault instance.
+
+* **Ansible & Configuration Management:**
+    * [x] **CI for Ansible:** Created a dedicated CI/CD pipeline to lint and validate all Ansible roles and playbooks.
+    * [x] **Centralize Ansible Secrets:** Migrated all secrets from Ansible Vault into HashiCorp Vault for a single source of truth.
 
 ### 🚀 Next Up: Configuration Management & GitOps
 
-Now that the foundational infrastructure is automated, my next focus is on the software layer.
+Now that the foundational infrastructure and configuration layers are automated, my next focus is on GitOps and advanced orchestration.
 
 * **Ansible & Configuration Management:**
-    * [ ] **CI for Ansible:** Create a dedicated CI/CD pipeline to lint and validate all Ansible roles and playbooks.
     * [ ] **Unified Provisioning Workflow:** Integrate the Terraform and Ansible pipelines for a seamless, end-to-end server provisioning and configuration process.
-    * [ ] **Centralize Ansible Secrets:** Migrate all secrets from Ansible Vault into HashiCorp Vault for a single source of truth.
 
 * **Kubernetes & GitOps:**
     * [ ] **CI for Kubernetes:** Expand the CI/CD pipeline to include validation for all Kubernetes manifests.
@@ -255,13 +259,13 @@ Project: [https://github.com/fashomelab/corneb](https://github.com/fashomelab/co
 
 ## 🙏 Acknowledgments
 
-- [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-- /r/homelab and /r/selfhosted communities
-- Docs for Proxmox, Terraform, K8s, Ansible, etc.
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template) for README inspiration.
+- /r/homelab and /r/selfhosted communities for ideas and support.
+- Official docs for Proxmox, Terraform, Kubernetes, Ansible, and HashiCorp Vault.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/corne-blignaut-10b618a4
 [status-shield]: https://img.shields.io/badge/status-active-success.svg?style=for-the-badge
-[status-url]: https://github.com/fashomelab/corneb
+[status-url]: https://github.com/fashomelab/corneb/actions?query=workflow%3Aaggregate-ci

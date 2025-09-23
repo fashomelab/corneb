@@ -1,0 +1,22 @@
+name: Aggregate CI Status
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC (1 AM BST)
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  check-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CI Status
+        run: |
+          ansible_status=$(curl -s https://api.github.com/repos/fashomelab/ansible/actions/workflows/ansible-homelab-ci.yaml/runs | jq -r '.workflow_runs[0].conclusion')
+          terraform_status=$(curl -s https://api.github.com/repos/fashomelab/homelab-terraform/actions/workflows/terraform-fashomelab.yaml/runs | jq -r '.workflow_runs[0].conclusion')
+          if [ "$ansible_status" == "success" ] && [ "$terraform_status" == "success" ]; then
+            echo "All CI pipelines are green!"
+            exit 0
+          else
+            echo "CI failure detected: Ansible=$ansible_status, Terraform=$terraform_status"
+            exit 1
+          fi
