@@ -1,22 +1,82 @@
+
 <a name="readme-top"></a>
 
 # Project FasHomeLab: A Living DevOps and Platform Engineering Portfolio
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
-[![Portfolio CI][status-shield]][status-url]
+## Executive Summary
 
-<div align="center">
-  <h3>Automated Homelab for Hands-On DevOps Practice</h3>
-  <p>
-    Welcome to FasHomeLab. Inspired by the complex, automated systems of the <em>Horizon</em> game series, this project is where my passion for gaming and technology comes together. I named the lab after "FAS" (Faro Automated Solutions) from the game, creating a place where I practice building my own resilient, code-driven systems.
-    <br><br>
-    What started with a few Raspberry Pis has become a fully automated setup blending on-premise hardware with cloud integration. Built with <strong>Terraform</strong>, <strong>Ansible</strong>, <strong>Kubernetes</strong>, and <strong>GitOps</strong>, it's a living showcase of my real-world engineering skills.
-    <br />
-    <a href="#overall-architecture"><strong>View Architecture »</strong></a>
-    · <a href="https://github.com/fashomelab/corneb/issues">Report Bug</a>
-    · <a href="https://github.com/fashomelab/corneb/issues">Request Feature</a>
-  </p>
-</div>
+This repository is the central hub for **Project FasHomeLab**, a comprehensive platform engineering portfolio. It showcases an enterprise-grade, fully automated homelab built on a foundation of Infrastructure as Code (IaC), GitOps, and robust security principles. The entire stack, from bare-metal provisioning to multi-cluster Kubernetes application deployments, is managed declaratively to demonstrate the skills of a modern **Platform Engineer**.
+
+## 🏆 Key Results & Impact
+
+This project translates technical solutions into measurable business value, achieving significant improvements in efficiency, security, and reliability.
+
+* **⚡️ 90% Reduction in Deployment Time:** Reduced the time to provision and configure a new production-ready VM from **~2 hours** of manual work to **under 10 minutes** through a fully automated Terraform and Ansible pipeline.
+* **⚙️ Scalable Management of 40+ Resources:** Declaratively manages the entire lifecycle of **20+ VMs**, **5 Raspberry Pis**, and **15+ containerized applications** across multiple environments, eliminating configuration drift.
+* **🛡️ Centralized & Auditable Security:** Secured **100%** of Kubernetes secrets via GitOps with Sealed Secrets and managed **80%** of all infrastructure credentials in HashiCorp Vault, eliminating hardcoded secrets from the CI/CD process.
+* **🔄 High-Availability by Design:** Engineered for resilience with a **3-node Proxmox HA cluster**, automated DNS failover using **Keepalived**, and weekly automated backups to ensure service continuity.
+
+---
+
+## 🗺️ High-Level Architecture & Workflow
+
+This diagram illustrates the end-to-end workflow, from code commit to a fully provisioned and monitored application, demonstrating a complete CI/CD and GitOps lifecycle.
+
+```mermaid
+flowchart TD
+    subgraph " "
+        direction LR
+        A[<br><b>Developer</b>]
+    end
+
+    subgraph "CI/CD & GitOps"
+        direction LR
+        B(fa:fagithub GitHub <br> Source Code <br> <i>Terraform, Ansible, K8s</i>)
+        C{<br>GitHub Actions <br> <i>CI & Code Validation</i>}
+        D(ado:azuredevops Azure DevOps <br> <i>CD Pipelines</i>)
+        E(fa:fagithub GitHub <br> ArgoCD Manifests <br> <i>GitOps Source of Truth</i>)
+    end
+    
+    subgraph "On-Premise Infrastructure (fashomelab)"
+        direction TB
+        F[<br>Proxmox HA Cluster]
+        G(fa:fakubernetes Kubernetes Clusters <br> <i>horizon-mountain (prod) <br> zero-dawn (dev)</i>)
+        H((fa:fadatabase5 Raspberry Pi <br> Fleet <br> <i>DNS, Monitoring, Storage</i>))
+        I(vault:hashicorp Vault <br> Secrets Mgmt)
+        J(fa:faansible Ansible <br> Config Mgmt)
+    end
+    
+    subgraph "Cloud Infrastructure (Azure)"
+        K(az:azure Azure Blob Storage <br> <i>Terraform State</i>)
+        L(az:azure Other Azure Services <br> <i>VPN, ACR, AKS - Future</i>)
+    end
+
+    A -- Push Code --> B
+    B -- Triggers --> C
+    C -- Reports Status --> B
+    B -- Webhook on Merge --> D
+    D -- Executes Terraform <br> via self-hosted agent --> F
+    D -- Executes Ansible <br> via self-hosted agent --> F & H
+    D -- Updates --> E
+    subgraph ArgoCD
+    direction LR
+    argo(argocd:argocd ArgoCD)
+    end
+    E -- Watched by --> argo
+    argo -- Deploys Apps --> G
+    
+    F -- Provisioned by --> D
+    F -- Hosts --> G & I
+    K -- State Backend for --> D
+    I -- Provides Secrets to --> D & G
+    L -- Provisioned by --> D
+    
+    style A fill:#fff,stroke:#333,stroke-width:2px
+    style argo fill:#fff,stroke:#333,stroke-width:2px
+    
+
+---
 
 <details>
   <summary>Table of Contents</summary>
