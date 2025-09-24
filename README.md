@@ -27,29 +27,29 @@ This diagram illustrates the end-to-end workflow, from code commit to a fully pr
 flowchart TD
     subgraph " "
         direction LR
-        A[<br><b>Developer</b>]
+        A["<br><b>Developer</b>"]
     end
 
     subgraph "CI/CD & GitOps"
         direction LR
-        B(fa:fagithub GitHub <br> Source Code <br> <i>Terraform, Ansible, K8s</i>)
-        C{<br>GitHub Actions <br> <i>CI & Code Validation</i>}
-        D(ado:azuredevops Azure DevOps <br> <i>CD Pipelines</i>)
-        E(fa:fagithub GitHub <br> ArgoCD Manifests <br> <i>GitOps Source of Truth</i>)
+        B("fa:fagithub GitHub <br> Source Code <br> <i>Terraform, Ansible, K8s</i>")
+        C{"<br>GitHub Actions <br> <i>CI & Code Validation</i>"}
+        D("ado:azuredevops Azure DevOps <br> <i>CD Pipelines</i>")
+        E("fa:fagithub GitHub <br> ArgoCD Manifests <br> <i>GitOps Source of Truth</i>")
     end
     
     subgraph "On-Premise Infrastructure (fashomelab)"
         direction TB
-        F[<br>Proxmox HA Cluster]
-        G(fa:fakubernetes Kubernetes Clusters <br> <i>horizon-mountain (prod) <br> zero-dawn (dev)</i>)
-        H((fa:fadatabase5 Raspberry Pi <br> Fleet <br> <i>DNS, Monitoring, Storage</i>))
-        I(vault:hashicorp Vault <br> Secrets Mgmt)
-        J(fa:faansible Ansible <br> Config Mgmt)
+        F["<br>Proxmox HA Cluster"]
+        G("fa:fakubernetes Kubernetes Clusters <br> <i>horizon-mountain (prod) <br> zero-dawn (dev)</i>")
+        H(("fa:fadatabase5 Raspberry Pi <br> Fleet <br> <i>DNS, Monitoring, Storage</i>"))
+        I("vault:hashicorp Vault <br> Secrets Mgmt")
+        J("fa:faansible Ansible <br> Config Mgmt")
     end
     
     subgraph "Cloud Infrastructure (Azure)"
-        K(az:azure Azure Blob Storage <br> <i>Terraform State</i>)
-        L(az:azure Other Azure Services <br> <i>VPN, ACR, AKS - Future</i>)
+        K("az:azure Azure Blob Storage <br> <i>Terraform State</i>")
+        L("az:azure Other Azure Services <br> <i>VPN, ACR, AKS - Future</i>")
     end
 
     A -- Push Code --> B
@@ -61,7 +61,7 @@ flowchart TD
     D -- Updates --> E
     subgraph ArgoCD
     direction LR
-    argo(argocd:argocd ArgoCD)
+    argo("argocd:argocd ArgoCD")
     end
     E -- Watched by --> argo
     argo -- Deploys Apps --> G
