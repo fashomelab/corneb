@@ -23,58 +23,7 @@ This project translates technical solutions into measurable business value, achi
 
 This diagram illustrates the end-to-end workflow, from code commit to a fully provisioned and monitored application, demonstrating a complete CI/CD and GitOps lifecycle.
 
-```mermaid
-flowchart TD
-    subgraph " "
-        direction LR
-        A["<br><b>Developer</b>"]
-    end
-
-    subgraph "CI/CD & GitOps"
-        direction LR
-        B("fa:fagithub GitHub <br> Source Code <br> <i>Terraform, Ansible, K8s</i>")
-        C{"<br>GitHub Actions <br> <i>CI & Code Validation</i>"}
-        D("ado:azuredevops Azure DevOps <br> <i>CD Pipelines</i>")
-        E("fa:fagithub GitHub <br> ArgoCD Manifests <br> <i>GitOps Source of Truth</i>")
-    end
-    
-    subgraph "On-Premise Infrastructure (fashomelab)"
-        direction TB
-        F["<br>Proxmox HA Cluster"]
-        G("fa:fakubernetes Kubernetes Clusters <br> <i>horizon-mountain (prod) <br> zero-dawn (dev)</i>")
-        H(("fa:fadatabase5 Raspberry Pi <br> Fleet <br> <i>DNS, Monitoring, Storage</i>"))
-        I("vault:hashicorp Vault <br> Secrets Mgmt")
-        J("fa:faansible Ansible <br> Config Mgmt")
-    end
-    
-    subgraph "Cloud Infrastructure (Azure)"
-        K("az:azure Azure Blob Storage <br> <i>Terraform State</i>")
-        L("az:azure Other Azure Services <br> <i>VPN, ACR, AKS - Future</i>")
-    end
-
-    A -- Push Code --> B
-    B -- Triggers --> C
-    C -- Reports Status --> B
-    B -- Webhook on Merge --> D
-    D -- Executes Terraform <br> via self-hosted agent --> F
-    D -- Executes Ansible <br> via self-hosted agent --> F & H
-    D -- Updates --> E
-    subgraph ArgoCD
-    direction LR
-    argo("argocd:argocd ArgoCD")
-    end
-    E -- Watched by --> argo
-    argo -- Deploys Apps --> G
-    
-    F -- Provisioned by --> D
-    F -- Hosts --> G & I
-    K -- State Backend for --> D
-    I -- Provides Secrets to --> D & G
-    L -- Provisioned by --> D
-    
-    style A fill:#fff,stroke:#333,stroke-width:2px
-    style argo fill:#fff,stroke:#333,stroke-width:2px
-```
+![High-Level Architecture Workflow](images/architecture-flow-diagram.png)
 
 ---
 
@@ -105,19 +54,6 @@ My focus has been on automating everything from server builds to application dep
 - Automate everything possible via code for true repeatability.
 
 **Explore the Code**: Check out [Terraform](https://github.com/fashomelab/homelab-terraform), [Ansible](https://github.com/fashomelab/ansible), or dive into issues to contribute!
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🗺️ Overall Architecture
-
-A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi fleet for always-on services, and Azure for state/security. Click for full view.
-
-<div align="center">
-  <a href="images/homelab-architecture.png">
-    <img src="images/homelab-architecture.png" alt="Hybrid Homelab Architecture with Proxmox, Raspberry Pi, and Azure" width="800">
-  </a>
-  <p><em>Homelab Architecture Diagram.</em></p>
-</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -159,6 +95,19 @@ A hybrid setup: on-premise Proxmox cluster for core workloads, Raspberry Pi flee
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔍 Technical Deep Dive
+
+<details>
+  <summary><strong>Static Component Architecture</strong></summary>
+  <br>
+  This diagram provides a detailed blueprint of the core components and their relationships within the FasHomeLab environment.
+  <br><br>
+  <div align="center">
+    <a href="images/homelab-architecture.png">
+      <img src="images/homelab-architecture.png" alt="Static Homelab Component Architecture" width="800">
+    </a>
+    <p><em>Static Homelab Component Architecture Diagram.</em></p>
+  </div>
+</details>
 
 <details>
   <summary><strong>Virtualization: 3-Node Proxmox HA Cluster</strong></summary>
