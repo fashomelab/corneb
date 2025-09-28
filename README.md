@@ -197,10 +197,12 @@ My focus has been on automating everything from server builds to application dep
   Automation is the central principle of this lab, with a clear separation of concerns between provisioning (Terraform) and configuration (Ansible).
 
   <ul>
-    <li><strong>Terraform (IaC):</strong> Manages the entire lifecycle of all Proxmox VMs, with state stored securely in <strong>Azure Blob Storage</strong> to enable CI/CD integration. [Repository Navigation](#️-repository-navigation-the-apexvirtual-showcase).</li>
+    <li><strong>Terraform (IaC):</strong> Manages the entire lifecycle of all Proxmox VMs, with state stored securely in <strong>Azure Blob Storage</strong> to enable CI/CD integration.</li>
     <li><strong>Ansible (Configuration Management):</strong> Configures new VMs after provisioning, handling security hardening and application setup. Playbooks are triggered automatically by an <strong>Azure DevOps</strong> pipeline.</li>
     <li><strong>Azure Cloud Services:</strong> An <strong>Entra ID App Registration</strong> provides secure, passwordless authentication for all automated services (Terraform, ADO) interacting with the Azure subscription.</li>
   </ul>
+  <br>
+  Explore the production-grade code for this strategy in the <a href="#-repository-navigation-the-apexvirtual-showcase"><strong>Repository Navigation</strong></a> section.
 </details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
