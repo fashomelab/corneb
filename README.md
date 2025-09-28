@@ -53,7 +53,15 @@ My focus has been on automating everything from server builds to application dep
 - Host resilient services for my own learning and experimentation.
 - Automate everything possible via code for true repeatability.
 
-**Explore the Code**: Check out [Terraform](https://github.com/fashomelab/homelab-terraform), [Ansible](https://github.com/fashomelab/ansible), or dive into issues to contribute!
+<details>
+  <summary><b>A Note on Naming: FasHomeLab vs. ApexVirtual</b></summary>
+  <br>
+  <b>Project FasHomeLab</b> is the name of my real, living homelab environment where I develop and test these concepts.
+  <br><br>
+  <b>ApexVirtual</b> is the professional, themed name for the public-facing showcase repositories. This allows me to share the code and patterns in a clean, secure, and easily understandable format without exposing the specific details of my private infrastructure.
+</details>
+
+**Explore the Code**: Check out the repositories in the [Repository Navigation](#️-repository-navigation-the-apexvirtual-showcase) section below.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -220,13 +228,16 @@ This project puts the following key DevOps principles and engineering skills int
 * **Zero-Downtime Deployments:** Implemented a GitOps workflow with ArgoCD, enabling consistent and reliable application deployments to the production Kubernetes cluster.
 * **Enhanced Security Posture:** Eliminated all long-lived secrets from the CI/CD process by implementing a secure, OIDC-based authentication flow with HashiCorp Vault.
 
-## 🏗️ Repository Structure
+---
+## 🏗️ Repository Navigation: The "ApexVirtual" Showcase
 
-Central hub for the project. Private repos will go public soon:
+This portfolio is composed of several public repositories under the professional theme "**ApexVirtual**." These repos contain the sanitized, production-grade code that demonstrates the enterprise patterns perfected in the `FasHomeLab` project.
 
-- **[Terraform IaC](https://github.com/fashomelab/homelab-terraform):** Contains all Infrastructure as Code for both on-premise (Proxmox) and cloud (Azure) environments.
-- **[Ansible](https://github.com/fashomelab/ansible)**: Playbooks and roles for configuration management. Automates Proxmox VMs and Raspberry Pis with dynamic inventories and Vault integration.
-- **/kubernetes:** Manifests, Helm, GitOps configs.
+* **[Terraform IaC (apexvirtual-terraform)](https://github.com/fashomelab/apexvirtual-terraform):** Contains the complete Infrastructure as Code for provisioning the multi-environment, hybrid-cloud platform.
+
+* **[Ansible Configuration (apexvirtual-ansible)](https://github.com/fashomelab/apexvirtual-ansible):** Contains all playbooks and roles for configuration management, security hardening, and application setup. *(Coming Soon)*
+
+* **[Kubernetes GitOps (apexvirtual-gitops)](https://github.com/fashomelab/apexvirtual-gitops):** Contains all Kubernetes manifests, Helm charts, and Kustomize overlays managed by ArgoCD and Flux. *(Coming Soon)*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
