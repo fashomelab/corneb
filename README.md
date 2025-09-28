@@ -202,7 +202,7 @@ My focus has been on automating everything from server builds to application dep
     <li><strong>Azure Cloud Services:</strong> An <strong>Entra ID App Registration</strong> provides secure, passwordless authentication for all automated services (Terraform, ADO) interacting with the Azure subscription.</li>
   </ul>
   <br>
-  Explore the production-grade code for this strategy in the <a href="#-repository-navigation-the-apexvirtual-showcase"><strong>Repository Navigation</strong></a> section.
+  Explore the production-grade code for this strategy in the <a href="#️-repository-navigation-the-apexvirtual-showcase"><strong>Repository Navigation</strong></a> section.
 </details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
