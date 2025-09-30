@@ -68,8 +68,8 @@ The platform follows a three-stage pipeline: infrastructure provisioning, config
 - [apexvirtual-ansible](https://github.com/fashomelab/apexvirtual-ansible)  
   Configuration management with dynamic inventory. Demonstrates role-based architecture, Vault integration, data-driven configuration, and automated security hardening.  
 
-- **apexvirtual-gitops (coming soon)**  
-  GitOps application deployment patterns. Will demonstrate ArgoCD workflows, multi-cluster management, and sealed secrets implementation.  
+- [apexvirtual-gitops](https://github.com/fashomelab/apexvirtual-gitops)
+  Production GitOps patterns with ArgoCD ApplicationSets, multi-cluster Kubernetes management, and automated application deployment across environments.  
 
 ## 💡 Skills Demonstrated
 - **Infrastructure as Code**: Advanced Terraform patterns with modules, remote state, multi-environment management  
