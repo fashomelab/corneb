@@ -21,7 +21,7 @@ Production-grade platform engineering showcase demonstrating infrastructure auto
 - Role-based architecture with 15+ reusable components
 - Monitoring federation across infrastructure
 
-### Application Deployment (In Development)
+### Application Deployment ([apexvirtual-gitops](https://github.com/fashomelab/apexvirtual-gitops))
 - GitOps patterns with ArgoCD
 - Multi-cluster Kubernetes management
 - Sealed secrets for encrypted credentials
