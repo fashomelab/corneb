@@ -81,7 +81,6 @@ The platform follows a three-stage pipeline: infrastructure provisioning, config
 ## 📞 Contact
 **Corne Blignaut**  
 [LinkedIn](https://www.linkedin.com/in/corne-blignaut) | cblignaut989@hotmail.com  
-Available for Platform Engineering roles - Remote/Hybrid (Portsmouth UK area)  
 
 ---
 Platform engineering showcase designed to demonstrate production-ready automation patterns through practical implementation of enterprise infrastructure practices.
