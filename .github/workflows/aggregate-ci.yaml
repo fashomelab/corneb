@@ -1,8 +1,5 @@
 name: Aggregate CI Status
-
 on:
-  schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC (1 AM BST)
   workflow_dispatch: # Allows manual trigger
 
 jobs:
