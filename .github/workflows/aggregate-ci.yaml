@@ -1,6 +1,10 @@
 name: Aggregate CI Status
+
 on:
   workflow_dispatch: # Allows manual trigger
+
+permissions:
+  actions: read
 
 jobs:
   check-ci:
